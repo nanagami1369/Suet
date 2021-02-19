@@ -5,6 +5,7 @@
         <TargetFrameworks>net472;net5.0-windows</TargetFrameworks>
         <UseWindowsForms>true</UseWindowsForms>
         <PublishReadyToRun>true</PublishReadyToRun>
+        <ApplicationIcon>app.ico</ApplicationIcon>
     </PropertyGroup>
 
 </Project>
