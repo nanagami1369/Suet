@@ -8,4 +8,7 @@
         <ApplicationIcon>app.ico</ApplicationIcon>
     </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+  </ItemGroup>
 </Project>
