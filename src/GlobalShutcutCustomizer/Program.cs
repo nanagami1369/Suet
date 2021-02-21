@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using ExcelDataReader;
+using NHotkey.WindowsForms;
 
 namespace GlobalShutcutCustomizer
 {
@@ -21,6 +23,7 @@ namespace GlobalShutcutCustomizer
             {
                 var icon = Icon.ExtractAssociatedIcon(setting.Path).ToBitmap();
                 body.AddNotifyMenuItem($"{setting.Name} ({setting.Key})", icon);
+                HotkeyManager.Current.AddOrReplace(setting.Name, setting.Key, (sender, e) => InvokeApp(setting));
             }
             Application.Run();
         }
@@ -54,6 +57,18 @@ namespace GlobalShutcutCustomizer
                 }
                 return settings.ToArray();
             }
+        }
+
+        public static void InvokeApp(Setting setting)
+        {
+            var info = new ProcessStartInfo()
+            {
+                FileName = setting.Path,
+                UseShellExecute = false,
+                Arguments = setting.Args,
+                CreateNoWindow = true,
+            };
+            Process.Start(info);
         }
     }
 }

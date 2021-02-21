@@ -1,15 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-    <PropertyGroup>
-        <OutputType>WinExe</OutputType>
-        <TargetFrameworks>net472;net5.0-windows</TargetFrameworks>
-        <UseWindowsForms>true</UseWindowsForms>
-        <PublishReadyToRun>true</PublishReadyToRun>
-        <ApplicationIcon>app.ico</ApplicationIcon>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworks>net472;net5.0-windows</TargetFrameworks>
+    <UseWindowsForms>true</UseWindowsForms>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+    <PackageReference Include="NHotkey.WindowsForms" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
