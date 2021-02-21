@@ -40,7 +40,7 @@ namespace GlobalShutcutCustomizer
                 NotifyMenu.Items.Add($"&{title}", image);
                 return;
             }
-            var menuItem = new ToolStripMenuItem { Text = $"&{title}" };
+            var menuItem = new ToolStripMenuItem { Text = $"&{title}" , Image = image};
             menuItem.Click += new EventHandler((sender, e) => action());
             NotifyMenu.Items.Add(menuItem);
             return;
