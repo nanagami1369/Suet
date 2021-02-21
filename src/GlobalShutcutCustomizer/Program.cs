@@ -26,7 +26,16 @@ namespace GlobalShutcutCustomizer
             var appDirPath = $"{AppDomain.CurrentDomain.BaseDirectory}";
             var settingName = SettingFileName;
             var settingPath = Path.Combine(appDirPath, settingName);
-            var settings = ReadSetting(settingPath);
+            Setting[] settings;
+            try
+            {
+                settings = ReadSetting(settingPath);
+            }
+            catch (SettingValidationException e)
+            {
+                MessageBox.Show(e.Message);
+                return;
+            }
             var body = new AppBody();
             foreach (var setting in settings)
             {
@@ -46,15 +55,39 @@ namespace GlobalShutcutCustomizer
             {
                 // ヘッダーを読み飛ばす
                 reader.Read();
-
                 var settings = new List<Setting>();
                 while (reader.Read())
                 {
                     var name = reader.GetString(0);
+                    if (string.IsNullOrWhiteSpace(name))
+                    {
+                        throw new SettingValidationException("名前の書かれていない行があります");
+                    }
                     var args = reader.GetString(1) ?? "";
                     var keyString = reader.GetString(2);
-                    var key = SettingUtil.StringToKeys(keyString);
+                    Keys key;
+                    try
+                    {
+                        key = SettingUtil.StringToKeys(keyString);
+                    }
+                    catch (ArgumentException)
+                    {
+                        throw new SettingValidationException($"{name}のキーが書かれていません");
+                    }
+                    catch (FormatException)
+                    {
+                        throw new SettingValidationException($"{name}のキーに変換できない文字がありました\n値：{keyString}");
+                    }
                     var path = reader.GetString(3);
+                    if (string.IsNullOrWhiteSpace(path))
+                    {
+                        throw new SettingValidationException($"{name}のパスが書かれていません");
+                    }
+                    if (!File.Exists(path))
+                    {
+                        throw new SettingValidationException($"{name}で指定されている\n実行ファイル{path}が存在しません");
+
+                    }
                     var setting = new Setting()
                     {
                         Name = name,
