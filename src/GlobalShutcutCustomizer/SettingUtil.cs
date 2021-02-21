@@ -7,6 +7,11 @@ namespace GlobalShutcutCustomizer
     {
         private static bool KeysTryParse(string s, out Keys wd)
         {
+            if (s == "Ctrl")
+            {
+                wd = Keys.Control;
+                return true;
+            }
             return Enum.TryParse(s, out wd) && Enum.IsDefined(typeof(Keys), wd);
         }
 
