@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace GlobalShutcutCustomizer
@@ -28,8 +29,10 @@ namespace GlobalShutcutCustomizer
 
         private Icon GetAppIcon()
         {
-            var AppPath = Application.ExecutablePath;
-            return Icon.ExtractAssociatedIcon(AppPath);
+            var appDirPath = $"{AppDomain.CurrentDomain.BaseDirectory}";
+            var appName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
+            var appPath = Path.Combine(appDirPath, appName);
+            return Icon.ExtractAssociatedIcon(appPath);
         }
 
         public void AddNotifyMenuItem(string title, Image image = null, Action action = null)
@@ -40,7 +43,7 @@ namespace GlobalShutcutCustomizer
                 NotifyMenu.Items.Add($"&{title}", image);
                 return;
             }
-            var menuItem = new ToolStripMenuItem { Text = $"&{title}" , Image = image};
+            var menuItem = new ToolStripMenuItem { Text = $"&{title}", Image = image };
             menuItem.Click += new EventHandler((sender, e) => action());
             NotifyMenu.Items.Add(menuItem);
             return;

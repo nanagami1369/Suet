@@ -17,7 +17,10 @@ namespace GlobalShutcutCustomizer
         [STAThread]
         private static void Main()
         {
-            var settings = ReadSetting(SettingFileName);
+            var appDirPath = $"{AppDomain.CurrentDomain.BaseDirectory}";
+            var settingName = SettingFileName;
+            var settingPath = Path.Combine(appDirPath, settingName);
+            var settings = ReadSetting(settingPath);
             var body = new AppBody();
             foreach (var setting in settings)
             {
