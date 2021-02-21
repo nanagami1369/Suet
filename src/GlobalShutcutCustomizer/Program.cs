@@ -17,6 +17,9 @@ namespace GlobalShutcutCustomizer
             var body = new AppBody();
             Application.Run();
         }
+
+        public static string SettingFileName { get; } = "settings.xlsx";
+
         public static Setting[] ReadSetting(string settingPath)
         {
             using (var stream = File.Open(settingPath, FileMode.Open, FileAccess.Read, FileShare.Read))
