@@ -6,6 +6,9 @@ using System.IO;
 using System.Windows.Forms;
 using ExcelDataReader;
 using NHotkey.WindowsForms;
+#if NET5_0
+using System.Text;
+#endif
 
 namespace GlobalShutcutCustomizer
 {
@@ -17,6 +20,9 @@ namespace GlobalShutcutCustomizer
         [STAThread]
         private static void Main()
         {
+#if NET5_0
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+#endif
             var appDirPath = $"{AppDomain.CurrentDomain.BaseDirectory}";
             var settingName = SettingFileName;
             var settingPath = Path.Combine(appDirPath, settingName);
