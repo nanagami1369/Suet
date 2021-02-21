@@ -22,7 +22,7 @@ namespace GlobalShutcutCustomizer
             foreach (var setting in settings)
             {
                 var icon = Icon.ExtractAssociatedIcon(setting.Path).ToBitmap();
-                body.AddNotifyMenuItem($"{setting.Name} ({setting.Key})", icon);
+                body.AddNotifyMenuItem($"{setting.Name} ({setting.Key})", icon,() => InvokeApp(setting));
                 HotkeyManager.Current.AddOrReplace(setting.Name, setting.Key, (sender, e) => InvokeApp(setting));
             }
             Application.Run();
