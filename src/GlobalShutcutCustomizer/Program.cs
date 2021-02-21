@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using ExcelDataReader;
@@ -14,7 +15,13 @@ namespace GlobalShutcutCustomizer
         [STAThread]
         private static void Main()
         {
+            var settings = ReadSetting(SettingFileName);
             var body = new AppBody();
+            foreach (var setting in settings)
+            {
+                var icon = Icon.ExtractAssociatedIcon(setting.Path).ToBitmap();
+                body.AddNotifyMenuItem($"{setting.Name} ({setting.Key})", icon);
+            }
             Application.Run();
         }
 
