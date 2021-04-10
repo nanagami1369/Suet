@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using ExcelDataReader;
 using NHotkey.WindowsForms;
@@ -37,13 +38,51 @@ namespace GlobalShutcutCustomizer
                 return;
             }
             var body = new AppBody();
-            foreach (var setting in settings)
+            try
             {
-                var icon = Icon.ExtractAssociatedIcon(setting.Path).ToBitmap();
-                body.AddNotifyMenuItem($"{setting.Name} ({setting.Key})", icon,() => InvokeApp(setting));
-                HotkeyManager.Current.AddOrReplace(setting.Name, setting.Key, (sender, e) => InvokeApp(setting));
+                foreach (var setting in settings)
+                {
+                    var icon = Icon.ExtractAssociatedIcon(setting.Path).ToBitmap();
+                    body.AddNotifyMenuItem($"{setting.Name} ({setting.Key})", icon, () => InvokeApp(setting));
+                    HotkeyManager.Current.AddOrReplace(setting.Name, setting.Key, (sender, e) => InvokeApp(setting));
+                }
+                Application.ThreadException += (sender, e) =>
+                {
+                    MessageBox.Show(e.Exception.Message);
+                    foreach (var setting in settings)
+                    {
+                        HotkeyManager.Current.Remove(setting.Name);
+                    }
+                };
+                Thread.GetDomain().UnhandledException += (sender, e) =>
+                {
+                    if (e.ExceptionObject is Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        foreach (var setting in settings)
+                        {
+                            HotkeyManager.Current.Remove(setting.Name);
+                        }
+                    }
+                };
+                Application.Run();
             }
-            Application.Run();
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                foreach (var setting in settings)
+                {
+                    HotkeyManager.Current.Remove(setting.Name);
+                }
+                throw;
+            }
+            finally
+            {
+                foreach (var setting in settings)
+                {
+                    HotkeyManager.Current.Remove(setting.Name);
+                }
+            }
         }
 
         public static string SettingFileName { get; } = "settings.xlsx";
