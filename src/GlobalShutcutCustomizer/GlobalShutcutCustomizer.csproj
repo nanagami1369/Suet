@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)'=='Release'">
-    <Content Include=".\settings.xlsx" Link="settings.xlsx.tmplate">
+    <Content Include=".\settings.xlsx" Link="settings.xlsx.template">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

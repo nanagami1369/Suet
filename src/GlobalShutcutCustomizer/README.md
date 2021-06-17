@@ -12,7 +12,7 @@ dotnet build
 
 ## 使い方
 
-* `settings.xlsx.tmplate`を`settings.xlsx`にリネーム
+* `settings.xlsx.template`を`settings.xlsx`にリネーム
 * `settings.xlsx`にキーボードショートカットとアプリのパスを書いてGlobalShutcutCustomizerを起動する。
 
 ### 以下のルールにしたがって書く
