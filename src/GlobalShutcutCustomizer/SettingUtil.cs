@@ -12,16 +12,17 @@ namespace GlobalShutcutCustomizer
                 wd = Keys.Control;
                 return true;
             }
+
             return Enum.TryParse(s, out wd) && Enum.IsDefined(typeof(Keys), wd);
         }
 
         public static Keys StringToKeys(string stringData)
         {
-
             if (string.IsNullOrWhiteSpace(stringData))
             {
                 throw new ArgumentException("args is null or WhiteSpace");
             }
+
             var keysString = stringData.Split('+');
             Keys keys;
             if (KeysTryParse(keysString[0], out var beginKey))
@@ -32,6 +33,7 @@ namespace GlobalShutcutCustomizer
             {
                 throw new FormatException("変換出来ない文字列が検出されました。");
             }
+
             for (var index = 1; index < keysString.Length; index++)
             {
                 if (KeysTryParse(keysString[index], out var key))
@@ -43,6 +45,7 @@ namespace GlobalShutcutCustomizer
                     throw new FormatException("変換出来ない文字列が検出されました。");
                 }
             }
+
             return keys;
         }
     }

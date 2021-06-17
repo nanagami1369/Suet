@@ -9,12 +9,15 @@ using ExcelDataReader;
 using NHotkey.WindowsForms;
 #if NET5_0
 using System.Text;
+
 #endif
 
 namespace GlobalShutcutCustomizer
 {
     internal static class Program
     {
+        public static string SettingFileName { get; } = "settings.xlsx";
+
         /// <summary>
         ///     The main entry point for the application.
         /// </summary>
@@ -22,7 +25,7 @@ namespace GlobalShutcutCustomizer
         private static void Main()
         {
 #if NET5_0
-                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 #endif
             var appDirPath = $"{AppDomain.CurrentDomain.BaseDirectory}";
             var settingName = SettingFileName;
@@ -37,6 +40,7 @@ namespace GlobalShutcutCustomizer
                 MessageBox.Show(e.Message);
                 return;
             }
+
             var body = new AppBody();
             try
             {
@@ -46,6 +50,7 @@ namespace GlobalShutcutCustomizer
                     body.AddNotifyMenuItem($"{setting.Name} ({setting.Key})", icon, () => InvokeApp(setting));
                     HotkeyManager.Current.AddOrReplace(setting.Name, setting.Key, (sender, e) => InvokeApp(setting));
                 }
+
                 Application.ThreadException += (sender, e) =>
                 {
                     MessageBox.Show(e.Exception.Message);
@@ -74,6 +79,7 @@ namespace GlobalShutcutCustomizer
                 {
                     HotkeyManager.Current.Remove(setting.Name);
                 }
+
                 throw;
             }
             finally
@@ -84,8 +90,6 @@ namespace GlobalShutcutCustomizer
                 }
             }
         }
-
-        public static string SettingFileName { get; } = "settings.xlsx";
 
         public static Setting[] ReadSetting(string settingPath)
         {
@@ -102,6 +106,7 @@ namespace GlobalShutcutCustomizer
                     {
                         throw new SettingValidationException("名前の書かれていない行があります");
                     }
+
                     var args = reader.GetString(1) ?? "";
                     var keyString = reader.GetString(2);
                     Keys key;
@@ -117,37 +122,31 @@ namespace GlobalShutcutCustomizer
                     {
                         throw new SettingValidationException($"{name}のキーに変換できない文字がありました\n値：{keyString}");
                     }
+
                     var path = reader.GetString(3);
                     if (string.IsNullOrWhiteSpace(path))
                     {
                         throw new SettingValidationException($"{name}のパスが書かれていません");
                     }
+
                     if (!File.Exists(path))
                     {
                         throw new SettingValidationException($"{name}で指定されている\n実行ファイル{path}が存在しません");
-
                     }
-                    var setting = new Setting()
-                    {
-                        Name = name,
-                        Args = args,
-                        Key = key,
-                        Path = path
-                    };
+
+                    var setting = new Setting {Name = name, Args = args, Key = key, Path = path};
                     settings.Add(setting);
                 }
+
                 return settings.ToArray();
             }
         }
 
         public static void InvokeApp(Setting setting)
         {
-            var info = new ProcessStartInfo()
+            var info = new ProcessStartInfo
             {
-                FileName = setting.Path,
-                UseShellExecute = false,
-                Arguments = setting.Args,
-                CreateNoWindow = true,
+                FileName = setting.Path, UseShellExecute = false, Arguments = setting.Args, CreateNoWindow = true
             };
             Process.Start(info);
         }

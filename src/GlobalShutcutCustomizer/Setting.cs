@@ -2,7 +2,7 @@ using System.Windows.Forms;
 
 namespace GlobalShutcutCustomizer
 {
-    class Setting
+    internal class Setting
     {
         public string Name { get; set; }
         public string Path { get; set; }
