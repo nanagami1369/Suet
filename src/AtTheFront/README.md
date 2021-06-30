@@ -27,3 +27,7 @@ dotnet build
     AtTheFront.exe -s Shift+F11    ...Shift+F11を同時に押すと実行
 ```
 
+## 使用したライブラリ
+
+* NHotKey
+  * Apache License Version 2.0, January 2004 <http://www.apache.org/licenses/>
