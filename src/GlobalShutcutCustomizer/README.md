@@ -21,5 +21,12 @@ dotnet build
 | ---- | ------------ | -------------------------- | ------------ |
 | 名前 | アプリの引数 | 登録するショートカットキー | アプリのパス |
 
-
 ![設定の例](https://raw.githubusercontent.com/nanagami1369/Suet/App/1/GlobalShutcutCustomizer/src/GlobalShutcutCustomizer/readme-images/setting-example.png)
+
+## 使用したライブラリ
+
+* NHotKey
+  * Apache License Version 2.0, January 2004 <http://www.apache.org/licenses/>
+* ExcelDataReader
+  * Copyright (c) 2014 ExcelDataReader
+  * [MIT License](https://github.com/ExcelDataReader/ExcelDataReader/blob/develop/LICENSE)
