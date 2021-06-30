@@ -25,4 +25,5 @@ dotnet build
     AtTheFront.exe -s Ctrl+Shift+K ...Ctrl+Shift+K‚ğ“¯‚É‰Ÿ‚·‚ÆÀs
     AtTheFront.exe -s Ctrl+Alt+S   ...Ctrl+Alt+S‚ğ“¯‚É‰Ÿ‚·‚ÆÀs
     AtTheFront.exe -s Shift+F11    ...Shift+F11‚ğ“¯‚É‰Ÿ‚·‚ÆÀs
-";
+```
+
