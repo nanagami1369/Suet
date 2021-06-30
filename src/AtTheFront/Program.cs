@@ -63,14 +63,12 @@ namespace AtTheFront
                     MessageBox.Show(e.Message);
                     var appName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
                     HotkeyManager.Current.Remove(appName);
-                    return;
                 }
                 finally
                 {
                     var appName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
                     HotkeyManager.Current.Remove(appName);
                 }
-                return;
             }
             else
             {
