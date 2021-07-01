@@ -11,4 +11,16 @@
     <PackageReference Include="NHotkey.WindowsForms" Version="2.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="README.md" Link="Readmes\AtTheFront.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="../../README.md" Link="README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="../../LICENSE" Link="LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -29,4 +29,16 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="README.md" Link="Readmes\GlobalShutcutCustomizer.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="../../README.md" Link="README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="../../LICENSE" Link="LICENSE">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
 </Project>
