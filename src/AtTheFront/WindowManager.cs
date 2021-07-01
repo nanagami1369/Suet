@@ -62,7 +62,7 @@ namespace AtTheFront
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
+        private struct RECT
         {
             public int Left;
             public int Top;
@@ -72,7 +72,7 @@ namespace AtTheFront
 
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct WINDOWINFO
+        private struct WINDOWINFO
         {
             public uint cbSize;
             public RECT rcWindow;
