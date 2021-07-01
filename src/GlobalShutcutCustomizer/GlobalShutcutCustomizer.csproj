@@ -5,6 +5,9 @@
     <TargetFrameworks>net472;net5.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>app.ico</ApplicationIcon>
+    <Authors>nashi nanagami</Authors>
+    <Description>任意のグローバルショートカットを追加できるアプリ</Description>
+    <Copyright>Copyright (c) 2021 nanagami</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,5 +43,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  
+
 </Project>
