@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace AtTheFront
 {
@@ -12,6 +13,8 @@ namespace AtTheFront
         // (x, y), (cx, cy)を無視するようにする.
         private const uint TOPMOST_FLAGS = SWP_NOSIZE | SWP_NOMOVE;
         private const uint NOTOPMOST_FLAGS = SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW;
+
+        private const uint FORMAT_MESSAGE_FROM_SYSTEM = 0x00001000;
         private static readonly int HWND_TOPMOST = -1;
         private static readonly int HWND_NOTOPMOST = -2;
 
@@ -33,8 +36,29 @@ namespace AtTheFront
         public static bool IsAtTheFrontForWindow(IntPtr handle)
         {
             const int TopMostFlag = 0x00000008;
-            _ = NativeMethods.GetWindowInfo(handle, out var windowInfo);
+            var resultCode = NativeMethods.GetWindowInfo(handle, out var windowInfo);
+            if (resultCode == 0)
+            {
+                var errorCode = Marshal.GetLastWin32Error();
+                var errorMessage = GetErrorMessage(errorCode);
+                throw new WindowManagerException(errorMessage);
+            }
+
             return 0 != (windowInfo.dwExStyle & TopMostFlag);
+        }
+
+        private static string GetErrorMessage(int errorCode)
+        {
+            var message = new StringBuilder(255);
+            _ = NativeMethods.FormatMessage(
+                FORMAT_MESSAGE_FROM_SYSTEM,
+                IntPtr.Zero,
+                (uint)errorCode,
+                0,
+                message,
+                message.Capacity,
+                IntPtr.Zero);
+            return message.ToString();
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -74,6 +98,10 @@ namespace AtTheFront
 
             [DllImport("user32.dll", SetLastError = true)]
             public static extern int GetWindowInfo(IntPtr hwnd, out WINDOWINFO pwi);
+
+            [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+            public static extern uint FormatMessage(uint dwFlags, IntPtr lpSource, uint dwMessageId, uint dwLanguageId,
+                StringBuilder lpBuffer, int nSize, IntPtr Arguments);
         }
     }
 }
