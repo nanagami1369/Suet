@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace AtTheFront
 {
@@ -17,7 +18,7 @@ namespace AtTheFront
         {
         }
 
-        protected WindowManagerException(System.Runtime.Serialization.SerializationInfo serializationInfo, System.Runtime.Serialization.StreamingContext streamingContext)
+        protected WindowManagerException(SerializationInfo serializationInfo, StreamingContext streamingContext)
         {
             throw new NotImplementedException();
         }

@@ -31,17 +31,9 @@ namespace AtTheFront
 
         private void SetComponents()
         {
-            var icon = new NotifyIcon
-            {
-                Icon = GetAppIcon(),
-                Visible = true,
-                Text = GetAppName()
-            };
+            var icon = new NotifyIcon {Icon = GetAppIcon(), Visible = true, Text = GetAppName()};
             var menu = new ContextMenuStrip();
-            var menuItem = new ToolStripMenuItem
-            {
-                Text = "&終了"
-            };
+            var menuItem = new ToolStripMenuItem {Text = "&終了"};
             menuItem.Click += Close_Click;
             menu.Items.Add(menuItem);
             icon.ContextMenuStrip = menu;

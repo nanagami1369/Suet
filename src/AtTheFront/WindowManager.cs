@@ -64,26 +64,26 @@ namespace AtTheFront
         [StructLayout(LayoutKind.Sequential)]
         private struct RECT
         {
-            public int Left;
-            public int Top;
-            public int Right;
-            public int Bottom;
+            public readonly int Left;
+            public readonly int Top;
+            public readonly int Right;
+            public readonly int Bottom;
         }
 
 
         [StructLayout(LayoutKind.Sequential)]
         private struct WINDOWINFO
         {
-            public uint cbSize;
-            public RECT rcWindow;
-            public RECT rcClient;
-            public uint dwStyle;
-            public uint dwExStyle;
-            public uint dwWindowStatus;
-            public uint cxWindowBorders;
-            public uint cyWindowBorders;
-            public ushort atomWindowType;
-            public ushort wCreatorVersion;
+            public readonly uint cbSize;
+            public readonly RECT rcWindow;
+            public readonly RECT rcClient;
+            public readonly uint dwStyle;
+            public readonly uint dwExStyle;
+            public readonly uint dwWindowStatus;
+            public readonly uint cxWindowBorders;
+            public readonly uint cyWindowBorders;
+            public readonly ushort atomWindowType;
+            public readonly ushort wCreatorVersion;
         }
 
         private static class NativeMethods
