@@ -78,15 +78,22 @@ namespace AtTheFront
 
         public static void ToFront()
         {
-            var handle = WindowManager.GetForegroundWindow();
-            var isAtTheFront = WindowManager.IsAtTheFrontForWindow(handle);
-            if (isAtTheFront)
+            try
             {
-                WindowManager.UnSetAtTheFront(handle);
+                var handle = WindowManager.GetForegroundWindow();
+                var isAtTheFront = WindowManager.IsAtTheFrontForWindow(handle);
+                if (isAtTheFront)
+                {
+                    WindowManager.UnSetAtTheFront(handle);
+                }
+                else
+                {
+                    WindowManager.SetAtTheFront(handle);
+                }
             }
-            else
+            catch (WindowManagerException e)
             {
-                WindowManager.SetAtTheFront(handle);
+                MessageBox.Show(e.Message);
             }
         }
     }
