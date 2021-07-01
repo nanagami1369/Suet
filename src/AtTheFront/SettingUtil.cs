@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace GlobalShutcutCustomizer
+namespace AtTheFront
 {
     public static class SettingUtil
     {

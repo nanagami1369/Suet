@@ -5,6 +5,9 @@
     <TargetFrameworks>net472;net5.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>app.ico</ApplicationIcon>
+    <Authors>nashi nanagami</Authors>
+    <Description>任意のグローバルショートカットを追加できるアプリ</Description>
+    <Copyright>Copyright (c) 2021 nanagami</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +28,18 @@
 
   <ItemGroup Condition="'$(Configuration)'=='Release'">
     <Content Include=".\settings.xlsx" Link="settings.xlsx.template">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="README.md" Link="Readmes\GlobalShutcutCustomizer.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="../../README.md" Link="README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="../../LICENSE" Link="LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
