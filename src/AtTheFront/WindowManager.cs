@@ -15,8 +15,8 @@ namespace AtTheFront
         private const uint NOTOPMOST_FLAGS = SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW;
 
         private const uint FORMAT_MESSAGE_FROM_SYSTEM = 0x00001000;
-        private static readonly int HWND_TOPMOST = -1;
-        private static readonly int HWND_NOTOPMOST = -2;
+        private const int HWND_TOPMOST = -1;
+        private const int HWND_NOTOPMOST = -2;
 
         public static bool SetAtTheFront(IntPtr handle)
         {
