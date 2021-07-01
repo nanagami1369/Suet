@@ -40,6 +40,11 @@ namespace GlobalShutcutCustomizer
                 MessageBox.Show(e.Message);
                 return;
             }
+            catch (FileNotFoundException e)
+            {
+                MessageBox.Show($"ファイル「{SettingFileName}」が見つかりませんでした\nファイルパス:\n{e.FileName}");
+                return;
+            }
 
             var body = new AppBody();
             try
