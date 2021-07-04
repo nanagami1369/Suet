@@ -15,7 +15,7 @@ namespace AtTheFront
             {
                 MessageBox.Show(
                     $@"使用法:
-    {Path.GetFileName(Environment.GetCommandLineArgs()[0])} -s [Key]
+    {AppBody.AppName} -s [Key]
 フォーカスのあたっているウィンドウを最前面に固定します
 すでにウィンドウが最前面に固定されている場合は解除します
 
@@ -25,10 +25,10 @@ namespace AtTheFront
     [key]に指定したキーが入力された場合に最前面に表示します
 
 例:
-    {Path.GetFileName(Environment.GetCommandLineArgs()[0])}                 ...実行
-    {Path.GetFileName(Environment.GetCommandLineArgs()[0])} -s Ctrl+Shift+K ...Ctrl+Shift+Kを同時に押すと実行
-    {Path.GetFileName(Environment.GetCommandLineArgs()[0])} -s Ctrl+Alt+S   ...Ctrl+Alt+Sを同時に押すと実行
-    {Path.GetFileName(Environment.GetCommandLineArgs()[0])} -s Shift+F11    ...Shift+F11を同時に押すと実行
+    {AppBody.AppName}                 ...実行
+    {AppBody.AppName} -s Ctrl+Shift+K ...Ctrl+Shift+Kを同時に押すと実行
+    {AppBody.AppName} -s Ctrl+Alt+S   ...Ctrl+Alt+Sを同時に押すと実行
+    {AppBody.AppName} -s Shift+F11    ...Shift+F11を同時に押すと実行
 ");
                 return;
             }
@@ -38,7 +38,7 @@ namespace AtTheFront
             {
                     var app = new AppBody(args[1], ToFront);
                     Application.Run();
-                }
+            }
             else
             {
                 ToFront();
