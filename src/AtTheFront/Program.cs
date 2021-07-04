@@ -15,7 +15,7 @@ namespace AtTheFront
             {
                 MessageBox.Show(
                     $@"使用法:
-    {AppBody.AppName} -s [Key]
+    {AppBody.AppName} [option] [key]
 フォーカスのあたっているウィンドウを最前面に固定します
 すでにウィンドウが最前面に固定されている場合は解除します
 
