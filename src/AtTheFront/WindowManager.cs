@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using CommonLibrary;
 
 namespace AtTheFront
 {
@@ -14,7 +15,6 @@ namespace AtTheFront
         private const uint TOPMOST_FLAGS = SWP_NOSIZE | SWP_NOMOVE;
         private const uint NOTOPMOST_FLAGS = SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW;
 
-        private const uint FORMAT_MESSAGE_FROM_SYSTEM = 0x00001000;
         private const int HWND_TOPMOST = -1;
         private const int HWND_NOTOPMOST = -2;
 
@@ -40,25 +40,11 @@ namespace AtTheFront
             if (resultCode == 0)
             {
                 var errorCode = Marshal.GetLastWin32Error();
-                var errorMessage = GetErrorMessage(errorCode);
+                var errorMessage = CommonUtil.GetErrorMessage(errorCode);
                 throw new WindowManagerException(errorMessage);
             }
 
             return 0 != (windowInfo.dwExStyle & TopMostFlag);
-        }
-
-        private static string GetErrorMessage(int errorCode)
-        {
-            var message = new StringBuilder(255);
-            _ = NativeMethods.FormatMessage(
-                FORMAT_MESSAGE_FROM_SYSTEM,
-                IntPtr.Zero,
-                (uint)errorCode,
-                0,
-                message,
-                message.Capacity,
-                IntPtr.Zero);
-            return message.ToString();
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -98,10 +84,6 @@ namespace AtTheFront
 
             [DllImport("user32.dll", SetLastError = true)]
             public static extern int GetWindowInfo(IntPtr hwnd, out WINDOWINFO pwi);
-
-            [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-            public static extern uint FormatMessage(uint dwFlags, IntPtr lpSource, uint dwMessageId, uint dwLanguageId,
-                StringBuilder lpBuffer, int nSize, IntPtr Arguments);
         }
     }
 }
