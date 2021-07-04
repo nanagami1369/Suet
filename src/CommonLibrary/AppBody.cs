@@ -64,7 +64,7 @@ namespace CommonLibrary
             icon.ContextMenuStrip = menu;
         }
 
-        private Icon GetAppIcon()
+        private static Icon GetAppIcon()
         {
             var appDirPath = $"{AppDomain.CurrentDomain.BaseDirectory}";
             var appName = AppName;
