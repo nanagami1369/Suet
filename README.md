@@ -1,5 +1,7 @@
 # Suet
 
+[![GitHub](https://img.shields.io/github/license/nanagami1369/Suet?color=%23204080)](https://github.com/nanagami1369/Suet/blob/develop/LICENSE)
+
 Simple and easy-to-understand tools (自作のシンプルで簡単な便利ツール郡)
 
 ## Tools
