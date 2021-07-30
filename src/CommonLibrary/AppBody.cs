@@ -10,8 +10,6 @@ namespace CommonLibrary
 {
     public class AppBody : Form
     {
-        public static string AppName { get; } = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
-
         public AppBody(string option, Action execMethod)
         {
             ShowInTaskbar = false;
@@ -44,10 +42,13 @@ namespace CommonLibrary
                 {
                     MessageBox.Show(ex.Message);
                 }
+
                 var appName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
                 HotkeyManager.Current.Remove(appName);
             };
         }
+
+        public static string AppName { get; } = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
 
         private void Close_Click(object sender, EventArgs e)
         {
@@ -56,9 +57,9 @@ namespace CommonLibrary
 
         private void SetComponents()
         {
-            var icon = new NotifyIcon { Icon = GetAppIcon(), Visible = true, Text = AppName };
+            var icon = new NotifyIcon {Icon = GetAppIcon(), Visible = true, Text = AppName};
             var menu = new ContextMenuStrip();
-            var menuItem = new ToolStripMenuItem { Text = "&終了" };
+            var menuItem = new ToolStripMenuItem {Text = "&終了"};
             menuItem.Click += Close_Click;
             menu.Items.Add(menuItem);
             icon.ContextMenuStrip = menu;

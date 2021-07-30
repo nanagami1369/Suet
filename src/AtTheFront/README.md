@@ -1,33 +1,40 @@
 # AtTheFront
 
-## �T�v
+## 概要
 
-�t�H�[�J�X�̂������Ă���E�B���h�E���őO�ʂɌŒ肷��A�v��
+フォーカスのあたっているウィンドウを最前面に固定するアプリ
 
-���łɃE�B���h�E���őO�ʂɌŒ肳��Ă���ꍇ�͉�������
+すでにウィンドウが最前面に固定されている場合は解除する
 
-## �r���h
+## ビルド
+
+### ビルドで使用したコマンド
+
+* [md-to-pdf](https://github.com/simonhaenisch/md-to-pdf)
 
 ```bash
 dotnet build
 ```
 
-## �g����
+## 使い方
 
 ```text
-�I�v�V����:
-    /? -h --help �w���v
-    -s /s [Key]�X�^���h�A���[�����[�h �A�v�����̂��풓����
-    [key]�Ɏw�肵���L�[�����͂��ꂽ�ꍇ�ɍőO�ʂɕ\�����܂�
+オプション:
+    /? -h --help ヘルプ
+    -s /s [Key]スタンドアローンモード アプリ自体が常駐して
+    [key]に指定したキーが入力された場合に最前面に表示します
 
-��:
-    AtTheFront.exe                 ...���s
-    AtTheFront.exe -s Ctrl+Shift+K ...Ctrl+Shift+K�𓯎��ɉ����Ǝ��s
-    AtTheFront.exe -s Ctrl+Alt+S   ...Ctrl+Alt+S�𓯎��ɉ����Ǝ��s
-    AtTheFront.exe -s Shift+F11    ...Shift+F11�𓯎��ɉ����Ǝ��s
+例:
+    AtTheFront.exe                 ...実行
+    AtTheFront.exe -s Ctrl+Shift+K ...Ctrl+Shift+Kを同時に押すと実行
+    AtTheFront.exe -s Ctrl+Alt+S   ...Ctrl+Alt+Sを同時に押すと実行
+    AtTheFront.exe -s Shift+F11    ...Shift+F11を同時に押すと実行
 ```
 
-## �g�p�������C�u����
+## 使用したライブラリ
 
 * NHotKey
   * Apache License Version 2.0, January 2004 <http://www.apache.org/licenses/>
+* System.CommandLine
+  * Copyright © .NET Foundation and Contributors All rights reserved.
+  * [MIT License](https://github.com/dotnet/command-line-api/blob/main/LICENSE.md)
