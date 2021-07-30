@@ -10,6 +10,7 @@ Simple and easy-to-understand tools (自作のシンプルで簡単な便利ツ�
 | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | [GlobalShutcutCustomizer](https://github.com/nanagami1369/Suet/tree/develop/src/GlobalShutcutCustomizer) | 任意のグローバルショートカットを追加できるアプリ           |
 | [AtTheFront](https://github.com/nanagami1369/Suet/tree/develop/src/AtTheFront)                           | フォーカスのあたっているウィンドウを最前面に固定するアプリ |
+| [VolumeCommandManager](https://github.com/nanagami1369/Suet/tree/develop/src/VolumeCommandManager)       | システムのボリュームを調整します                           |
 
 ## ビルドで使用したコマンド
 
@@ -25,3 +26,6 @@ Simple and easy-to-understand tools (自作のシンプルで簡単な便利ツ�
 * System.CommandLine
   * Copyright © .NET Foundation and Contributors All rights reserved.
   * [MIT License](https://github.com/dotnet/command-line-api/blob/main/LICENSE.md)
+* NAudio.Wasapi
+  * Copyright 2020 Mark Heath
+  * [MIT License](https://github.com/naudio/NAudio/blob/master/license.txt)

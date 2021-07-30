@@ -14,4 +14,9 @@
     <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj" />
   </ItemGroup>
 
+  <Target Name="BuildREADME" AfterTargets="PostBuildEvent">
+    <Exec Command="md-to-pdf $(ProjectDir)\README.md" />
+    <Move SourceFiles="README.pdf" DestinationFolder="$(TargetDir)" />
+  </Target>
+
 </Project>
