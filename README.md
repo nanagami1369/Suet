@@ -22,3 +22,6 @@ Simple and easy-to-understand tools (自作のシンプルで簡単な便利ツ�
 * ExcelDataReader
   * Copyright (c) 2014 ExcelDataReader
   * [MIT License](https://github.com/ExcelDataReader/ExcelDataReader/blob/develop/LICENSE)
+* System.CommandLine
+  * Copyright © .NET Foundation and Contributors All rights reserved.
+  * [MIT License](https://github.com/dotnet/command-line-api/blob/main/LICENSE.md)

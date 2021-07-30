@@ -35,3 +35,6 @@ dotnet build
 
 * NHotKey
   * Apache License Version 2.0, January 2004 <http://www.apache.org/licenses/>
+* System.CommandLine
+  * Copyright © .NET Foundation and Contributors All rights reserved.
+  * [MIT License](https://github.com/dotnet/command-line-api/blob/main/LICENSE.md)
